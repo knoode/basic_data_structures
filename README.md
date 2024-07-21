@@ -1,7 +1,7 @@
 # Basic Data Structures (C)
 
 - [x] Linked list
-- [ ] Hashmap
+- [x] Hashmap
 - [ ] Queue
 - [ ] Stack
 - [ ] `...`

@@ -11,5 +11,7 @@ int main()
 
     NodePrint(&node);
 
+    free(node);
+
     return 0;
 }

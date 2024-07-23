@@ -1,22 +1,19 @@
-#include <stdio.h>
 #include "hashmap.h"
 
 int main()
 {
     Hashmap* hashmap = NULL;
 
-    HashmapPush(&hashmap, "sex", 69);
-    HashmapPush(&hashmap, "satan", 666);
-    HashmapPush(&hashmap, "heaven", 333);
+    HashmapPush(&hashmap, "l33t", 1337);
+    HashmapPush(&hashmap, "lel", 69);
+    HashmapPush(&hashmap, "lel", 228); // duplicate!
 
-    HashmapSet(&hashmap, "sdd", 666666); // <- error!
-    HashmapSet(&hashmap, "satan", 666666);
-    
     HashmapPrint(hashmap);
 
     HashmapClear(&hashmap);
+    HashmapPrint(hashmap); // empty!
 
-    HashmapPrint(hashmap);
+    free(hashmap);
 
     return 0;
 }

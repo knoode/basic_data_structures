@@ -2,7 +2,7 @@
 
 - [x] Linked list
 - [x] Hashmap
-- [ ] Queue
+- [x] Queue
 - [ ] Stack
 - [ ] `...`
 

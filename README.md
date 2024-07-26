@@ -3,8 +3,10 @@
 - [x] Linked list
 - [x] Hashmap
 - [x] Queue
-- [ ] Stack
+- [x] Stack
 - [ ] `...`
+
+You can find example of usage in .c files
 
 To build everything:
 ```

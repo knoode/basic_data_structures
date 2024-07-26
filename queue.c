@@ -17,7 +17,17 @@ int main()
 {
     Queue* queue = NULL;
 
+    Enqueue(&queue, 666);
+    Enqueue(&queue, 555);
+
+    Dequeue(&queue);
+    QueuePrint(queue);
+
+    printf("============================================\n");
+    
     stress_test(&queue);
+    QueuePrint(queue);
+    QueueClear(&queue);
     QueuePrint(queue);
 
     printf("length = %ld, capacity = %ld\n", queue->length, queue->capacity);

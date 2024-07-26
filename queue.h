@@ -4,8 +4,6 @@
 
 #define CAPACITY 5
 
-// FIXME: Length and Capacity fields can be modified by anyone
-// so maybe we should implement a function for controling these fields
 typedef struct {
     int* items;
     size_t length;
@@ -58,17 +56,19 @@ void Dequeue(Queue** queue)
     // FIXME: Maybe find a better way to alloc a new Queue in this case
     Queue* new_queue = malloc(sizeof(Queue));
 
-    new_queue->items = malloc(queue_copy->capacity * sizeof(int));
+    const size_t current_capacity = queue_copy->capacity;
+    new_queue->items = malloc(current_capacity * sizeof(int));
+    new_queue->capacity = current_capacity;
     new_queue->length = 0;
-    new_queue->capacity = queue_copy->capacity;
 
     // Copy elements from old queue to new, except for 0 index element
     for (size_t i = 1; i < queue_copy->length; i++) {
         Enqueue(&new_queue, queue_copy->items[i]);
     }
-
+    
     new_queue->length = queue_copy->length - 1;
-
+    
+    free(queue_copy);
     (*queue) = new_queue;
 }
 
@@ -83,8 +83,9 @@ void QueueClear(Queue** queue)
 
     // Keep the same capacity, but allocate a new queue with length = 0
     new_queue = malloc(sizeof(Queue));
-    new_queue->items = malloc(sizeof(int) * queue_copy->capacity);
-    new_queue->capacity = queue_copy->capacity;
+    const size_t current_capacity = queue_copy->capacity;
+    new_queue->items = malloc(sizeof(int) * current_capacity);
+    new_queue->capacity = current_capacity;
     new_queue->length = 0;
 
     free(queue_copy);

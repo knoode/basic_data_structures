@@ -7,8 +7,6 @@
 #define KEY_LEN 10
 #define CAPACITY 5
 
-// FIXME: Length and Capacity fields can be modified by anyone
-// so maybe we should implement a function for controlling these fields
 typedef struct {
     char** keys;
     int* values;
@@ -24,7 +22,6 @@ void HashmapInit(Hashmap** hashmap)
     Hashmap* new_hashmap = malloc(sizeof(Hashmap));
 
     // Set default fields
-    new_hashmap->length = 0;
     new_hashmap->capacity = CAPACITY;
 
     // Allocate memory for keys and values
@@ -49,6 +46,13 @@ int ComputeHash(char* key)
 _Bool HashmapPush(Hashmap** hashmap, char* key, int value)
 {
     Hashmap* new_hashmap = (*hashmap);
+    const size_t key_len = strlen(key);
+
+    // Make sure key length is not an empty string
+    // and is not > KEY_LEN
+    if (key_len == 0 || key_len > KEY_LEN) {
+        return false;
+    }
 
     if (new_hashmap == NULL) {
         HashmapInit(&new_hashmap);
@@ -72,10 +76,6 @@ _Bool HashmapPush(Hashmap** hashmap, char* key, int value)
         }
     }
 
-    // Make sure key length is not > KEY_LEN
-    if (strlen(key) > KEY_LEN) {
-        return false;
-    }
 
     // Add key:value pair to the hashmap
     size_t i = new_hashmap->length;

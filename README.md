@@ -4,6 +4,7 @@
 - [x] Hashmap
 - [x] Queue
 - [x] Stack
+- [ ] Tree
 - [ ] `...`
 
 You can find example of usage in .c files
